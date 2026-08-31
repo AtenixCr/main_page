@@ -1,19 +1,16 @@
-﻿import './Navbar.css';
-
-const Navbar = () => {
+﻿const Navbar = () => {
   return (
-    <header className="navbar">
-      <div className="navbar-container">
-        <div className="navbar-logo">
-          <a href="/">Atenix</a>
-        </div>
-        <nav className="navbar-links">
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#contact" className="btn-primary">Contact</a></li>
-          </ul>
+    <header className="site-header">
+      <div className="container header-inner">
+        <a className="logo" href="#home" aria-label="Atenix home">
+          <span className="logo-mark" aria-hidden="true" />
+          Atenix
+        </a>
+        <nav className="nav" aria-label="Primary">
+          <a href="#home">Home</a>
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
         </nav>
       </div>
     </header>
