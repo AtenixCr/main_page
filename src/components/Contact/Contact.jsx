@@ -1,72 +1,131 @@
-import { useState } from 'react';
-
-const initialForm = { name: '', email: '', message: '' };
+const contactChannels = [
+  {
+    id: 'whatsapp',
+    title: 'WhatsApp',
+    description: 'Respuesta rápida por chat',
+    actionText: 'Escribir por WhatsApp',
+    url: 'https://wa.me/506', // Reemplazar con el número oficial de Atenix
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+      </svg>
+    ),
+    color: '#25D366',
+  },
+  {
+    id: 'email',
+    title: 'Correo Electrónico',
+    description: 'atenixcr@gmail.com',
+    actionText: 'Enviar un correo',
+    url: 'mailto:atenixcr@gmail.com',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect width="20" height="16" x="2" y="4" rx="2" />
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+      </svg>
+    ),
+    color: '#3dd6c6',
+  },
+  {
+    id: 'linkedin',
+    title: 'LinkedIn',
+    description: 'Conexión y red profesional',
+    actionText: 'Ver perfil corporativo',
+    url: 'https://linkedin.com/company/atenixcr', // Reemplazar con URL oficial
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+        <rect width="4" height="12" x="2" y="9" />
+        <circle cx="4" cy="4" r="2" />
+      </svg>
+    ),
+    color: '#0A66C2',
+  },
+  {
+    id: 'github',
+    title: 'GitHub',
+    description: 'Código y proyectos',
+    actionText: 'Explorar repositorios',
+    url: 'https://github.com/AtenixCr',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+        <path d="M9 18c-4.51 2-5-2-7-2" />
+      </svg>
+    ),
+    color: '#e8eef6',
+  },
+  {
+    id: 'instagram',
+    title: 'Instagram',
+    description: '@atenix.cr',
+    actionText: 'Seguir en Instagram',
+    url: 'https://instagram.com/atenix.cr',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+      </svg>
+    ),
+    color: '#E4405F',
+  },
+  {
+    id: 'facebook',
+    title: 'Facebook',
+    description: 'Atenix Cr',
+    actionText: 'Visitar en Facebook',
+    url: 'https://www.facebook.com/share/1Qti6keqfv/',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+      </svg>
+    ),
+    color: '#1877F2',
+  },
+];
 
 const Contact = () => {
-  const [form, setForm] = useState(initialForm);
-  const [status, setStatus] = useState('idle');
-
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setForm((current) => ({ ...current, [name]: value }));
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    setStatus('sent');
-    setForm(initialForm);
-  }
-
   return (
     <section className="section" id="contact">
       <div className="container contact-layout">
-        <div>
-          <h2>Let&apos;s talk</h2>
+        <div className="contact-info">
+          <div className="contact-status-badge">
+            <span className="status-dot"></span>
+            Disponibles para nuevos proyectos
+          </div>
+          <h2>Hablemos</h2>
           <p className="section-intro">
-            Tell us what you want to build. We partner with teams to turn ideas
-            into durable web products.
+            Cuéntanos qué quieres construir. Te ayudamos a convertir ideas en productos digitales duraderos y eficientes.
+          </p>
+          <p className="contact-subtext">
+            Escríbenos directamente por WhatsApp, correo o conéctate con nosotros en nuestras redes oficiales. Te responderemos a la brevedad.
           </p>
         </div>
-        <form className="contact-form" onSubmit={handleSubmit}>
-          <label>
-            Name
-            <input
-              name="name"
-              type="text"
-              autoComplete="name"
-              required
-              value={form.name}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Email
-            <input
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              value={form.email}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Message
-            <textarea
-              name="message"
-              rows="5"
-              required
-              value={form.message}
-              onChange={handleChange}
-            />
-          </label>
-          <button className="btn btn-primary" type="submit">
-            Send message
-          </button>
-          {status === 'sent' && (
-            <p className="form-note success">Message received. Thank you.</p>
-          )}
-        </form>
+
+        <div className="contact-channels-grid">
+          {contactChannels.map((channel) => (
+            <a
+              key={channel.id}
+              href={channel.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-channel-card"
+              style={{ '--channel-color': channel.color }}
+            >
+              <div className="channel-icon-wrapper">
+                {channel.icon}
+              </div>
+              <div className="channel-content">
+                <span className="channel-title">{channel.title}</span>
+                <span className="channel-desc">{channel.description}</span>
+                <span className="channel-action">
+                  {channel.actionText} <span className="arrow">→</span>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );
