@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --bg: #0b1220;
   --bg-elevated: #121b2d;
   --bg-alt: #101827;
@@ -255,6 +255,113 @@ main {
 .card p {
   color: var(--muted);
   margin: 0;
+}
+
+/* Services Grid & Cards */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+}
+
+.service-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.service-icon {
+  color: var(--accent);
+  margin-bottom: 1rem;
+  display: inline-flex;
+}
+
+.service-features-list {
+  margin: 1.25rem 0 1.5rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.service-features-list .bullet {
+  color: var(--accent);
+  font-weight: bold;
+  margin-right: 0.35rem;
+}
+
+.service-cta {
+  margin-top: auto;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.service-cta:hover {
+  gap: 0.65rem;
+  color: var(--accent-strong);
+}
+
+/* Tech Stack Badges */
+.tech-stack-container {
+  padding: 2.5rem 0;
+  border-block: 1px solid var(--border);
+  margin: 3.5rem 0;
+  text-align: center;
+}
+
+.tech-stack-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.1rem;
+}
+
+.tech-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: center;
+}
+
+.tech-badge {
+  background: rgba(61, 214, 198, 0.08);
+  border: 1px solid rgba(61, 214, 198, 0.22);
+  color: var(--text);
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.tech-badge:hover {
+  background: rgba(61, 214, 198, 0.18);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.why-us-section {
+  margin-bottom: 0.5rem;
 }
 
 .contact-layout {
