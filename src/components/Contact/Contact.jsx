@@ -31,7 +31,7 @@ const contactChannels = [
     title: 'LinkedIn',
     description: 'Conexión y red profesional',
     actionText: 'Ver perfil corporativo',
-    url: 'https://linkedin.com/company/atenixcr', // Reemplazar con URL oficial
+    url: 'https://www.linkedin.com/in/atenix-cr-344985432?utm_source=share_via&utm_content=profile&utm_medium=member_android',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
