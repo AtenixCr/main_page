@@ -1,27 +1,52 @@
+import { useState } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <a className="logo" href="#home" aria-label="Atenix home">
+        <a className="logo" href="#home" aria-label="Atenix home" onClick={() => setIsMenuOpen(false)}>
           Atenix
         </a>
-        <nav className="nav" aria-label="Primary">
-          <a href="#home">{t('nav.home')}</a>
-          <a href="#features">{t('nav.services')}</a>
-          <a href="#about">{t('nav.about')}</a>
-          <a href="#contact">{t('nav.contact')}</a>
+
+        <button 
+          className="mobile-menu-btn" 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+          aria-expanded={isMenuOpen}
+        >
+          {isMenuOpen ? (
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          )}
+        </button>
+
+        <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`} aria-label="Primary">
+          <div className="nav-links">
+            <a href="#home" onClick={() => setIsMenuOpen(false)}>{t('nav.home')}</a>
+            <a href="#features" onClick={() => setIsMenuOpen(false)}>{t('nav.services')}</a>
+            <a href="#about" onClick={() => setIsMenuOpen(false)}>{t('nav.about')}</a>
+            <a href="#contact" onClick={() => setIsMenuOpen(false)}>{t('nav.contact')}</a>
+          </div>
 
           <div className="nav-controls">
             <select
               className="lang-select"
               value={language}
-              onChange={(e) => setLanguage(e.target.value)}
+              onChange={(e) => {
+                setLanguage(e.target.value);
+                setIsMenuOpen(false);
+              }}
               aria-label="Select language"
             >
               <option value="es">ES</option>
@@ -31,7 +56,10 @@ const Navbar = () => {
 
             <button
               className="icon-btn"
-              onClick={toggleTheme}
+              onClick={() => {
+                toggleTheme();
+                setIsMenuOpen(false);
+              }}
               aria-label="Toggle theme"
             >
               {theme === 'light' ? (
