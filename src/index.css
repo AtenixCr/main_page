@@ -4,8 +4,8 @@
   --bg-alt: #101827;
   --text: #e8eef6;
   --muted: #9aa8bc;
-  --accent: #3dd6c6;
-  --accent-strong: #2bb8aa;
+  --accent: #69b3e7;
+  --accent-strong: #4a90e2;
   --border: rgba(232, 238, 246, 0.12);
   --danger: #f07178;
   --success: #7dce9a;
@@ -14,25 +14,25 @@
   --header-height: 72px;
   --font: "Segoe UI", system-ui, -apple-system, sans-serif;
   --header-bg: rgba(11, 18, 32, 0.78);
-  --gradient-1: rgba(61, 214, 198, 0.16);
-  --gradient-2: rgba(80, 120, 255, 0.12);
+  --gradient-1: rgba(105, 179, 231, 0.16);
+  --gradient-2: rgba(17, 69, 138, 0.16);
 }
 
 [data-theme='light'] {
-  --bg: #f8fafc;
+  --bg: #fdfdfd;
   --bg-elevated: #ffffff;
-  --bg-alt: #f1f5f9;
+  --bg-alt: #f4f6f9;
   --text: #0f172a;
-  --muted: #64748b;
-  --accent: #0d9488;
-  --accent-strong: #0f766e;
-  --border: rgba(15, 23, 42, 0.12);
+  --muted: #475569;
+  --accent: #11458a;
+  --accent-strong: #0d366b;
+  --border: rgba(17, 69, 138, 0.15);
   --danger: #ef4444;
   --success: #10b981;
-  --shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
-  --header-bg: rgba(248, 250, 252, 0.85);
-  --gradient-1: rgba(13, 148, 136, 0.1);
-  --gradient-2: rgba(59, 130, 246, 0.1);
+  --shadow: 0 12px 40px rgba(17, 69, 138, 0.08);
+  --header-bg: rgba(253, 253, 253, 0.85);
+  --gradient-1: rgba(17, 69, 138, 0.04);
+  --gradient-2: rgba(105, 179, 231, 0.04);
 }
 
 *,
@@ -145,16 +145,10 @@ main {
   letter-spacing: 0.02em;
 }
 
-.logo-mark {
-  width: 1.65rem;
-  height: 1.65rem;
-  border-radius: 0.4rem;
-  background:
-    linear-gradient(135deg, transparent 42%, var(--accent) 42% 58%, transparent 58%),
-    linear-gradient(var(--text), var(--text));
-  background-size: 100% 100%, 70% 2px;
-  background-position: center, center 62%;
-  background-repeat: no-repeat;
+.logo-img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
 }
 
 .nav {
@@ -307,7 +301,7 @@ main {
 
 .btn-primary {
   background: var(--accent);
-  color: #06201c;
+  color: var(--bg);
 }
 
 .btn-primary:hover:not(:disabled) {
@@ -445,8 +439,8 @@ main {
 }
 
 .tech-badge {
-  background: rgba(61, 214, 198, 0.08);
-  border: 1px solid rgba(61, 214, 198, 0.22);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
   color: var(--text);
   padding: 0.45rem 1rem;
   border-radius: 999px;
@@ -456,7 +450,7 @@ main {
 }
 
 .tech-badge:hover {
-  background: rgba(61, 214, 198, 0.18);
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
   border-color: var(--accent);
   transform: translateY(-2px);
 }

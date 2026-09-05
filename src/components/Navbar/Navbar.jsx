@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -11,11 +11,12 @@ const Navbar = () => {
     <header className="site-header">
       <div className="container header-inner">
         <a className="logo" href="#home" aria-label="Atenix home" onClick={() => setIsMenuOpen(false)}>
+          <img src="/logo.png" alt="Atenix Logo" className="logo-img" />
           Atenix
         </a>
 
-        <button 
-          className="mobile-menu-btn" 
+        <button
+          className="mobile-menu-btn"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
